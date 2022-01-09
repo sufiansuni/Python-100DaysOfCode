@@ -26,8 +26,7 @@ timer = None
 def reset_timer():
     window.after_cancel(timer)
     canvas.itemconfig(timer_text, text=f"00:00")
-    header_label["text"] = "Timer"
-    header_label["fg"] = GREEN
+    header_label.config(text="Timer", fg=GREEN)
     checkmarks_label["text"] = ""
     global reps
     reps = 0
@@ -43,32 +42,32 @@ def start_timer():
     
     if reps % 8 == 0:
         count_down(long_break_sec)
-        header_label["text"] = "Break"
-        header_label["fg"] = RED
+        header_label.config(text="Break", fg=RED)
     elif reps % 2 == 0:
         count_down(short_break_sec)
-        header_label["text"] = "Break"
-        header_label["fg"] = PINK
+        header_label.config(text="Break", fg=PINK)
     else:
         count_down(work_sec)
-        header_label["text"] = "Work"
-        header_label["fg"] = GREEN
+        header_label.config(text="Work", fg=GREEN)
 
 # ---------------------------- COUNTDOWN MECHANISM ------------------------------- # 
 def count_down(count):
     global timer
-    seconds = count % 60
-    minutes = int((count - seconds) / 60)
+    minutes = math.floor(count / 60)
+    seconds = count - (minutes * 60)
+
+    # formatting display of minutes and seconds
     if seconds < 10:
         seconds = f"0{seconds}"
     if minutes < 10:
         minutes = f"0{minutes}"
+    
     if count > 0:
         canvas.itemconfig(timer_text, text=f"{minutes}:{seconds}")
         timer = window.after(1000, count_down, count - 1)
     else:
         start_timer()
-        work_sessions = math.Floor(reps / 2)
+        work_sessions = math.floor(reps / 2)
         checkmarks = ""
         for _ in range(work_sessions):
             checkmarks += "✔️"
