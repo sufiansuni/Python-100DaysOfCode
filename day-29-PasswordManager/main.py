@@ -2,32 +2,57 @@
 # Password Manager App
 # --------------------
 # stores login information entered by user
-# user is able to access it later on
-# user ux: click to copy info to clipboard, easy to paste to website
+# user ux: user can paste a generated password
 
 # ---------------------------- IMPORTS ------------------------------- #
 import tkinter
 from tkinter.constants import END
+from tkinter import messagebox
+import random
+import pyperclip
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
-    print("To Do: Generate A Password")
+    letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+    numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
+    
+    password_letters = [random.choice(letters) for _ in range(random.randint(8, 10))]
+
+    password_symbols = [random.choice(symbols) for _ in range(random.randint(2, 4))]
+
+    password_numbers = [random.choice(numbers) for _ in range(random.randint(2, 4))]
+
+    password_list = password_letters + password_symbols + password_numbers
+    random.shuffle(password_list)
+
+    password = "".join(password_list)
+    pyperclip.copy(password)
+
+    entry_3.delete(0, END)
+    entry_3.insert(END, password)
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_login():
-    # print("To Do: Save Login Details")
 
     # prepare a new login data entry
     new_login = f"{entry_1.get()} | {entry_2.get()} | {entry_3.get()}\n"
 
-    # write it as a new line in a file, data.txt
-    with open("day-29-PasswordManager/data.txt", "a") as file:
-        file.write(new_login)
+    if len(entry_1.get()) == 0 or len(entry_2.get()) == 0 or len(entry_3.get()) == 0:
+        messagebox.showinfo(title="Error", message="Fields cannot be blank")
+    else:
+        # confirmation messagebox
+        is_ok = messagebox.askokcancel(title=entry_1.get(), message=f"Details:\n{new_login}\nSave?")
+        # write it as a new line in a file, data.txt
+        
+        if is_ok:
+            with open("day-29-PasswordManager/data.txt", "a") as file:
+                file.write(new_login)
 
-    # clear the input fields
-    entry_1.delete(0, END) 
-    # entry_2.delete(0, END)
-    entry_3.delete(0, END)
+            # clear the input fields
+            entry_1.delete(0, END) 
+            # entry_2.delete(0, END)
+            entry_3.delete(0, END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 # Window
