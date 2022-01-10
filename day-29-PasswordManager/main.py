@@ -7,6 +7,7 @@
 
 # ---------------------------- IMPORTS ------------------------------- #
 import tkinter
+from tkinter.constants import END
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 def generate_password():
@@ -14,13 +15,25 @@ def generate_password():
 
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 def save_login():
-    print("To Do: Save Login Details")
+    # print("To Do: Save Login Details")
+
+    # prepare a new login data entry
+    new_login = f"{entry_1.get()} | {entry_2.get()} | {entry_3.get()}\n"
+
+    # write it as a new line in a file, data.txt
+    with open("day-29-PasswordManager/data.txt", "a") as file:
+        file.write(new_login)
+
+    # clear the input fields
+    entry_1.delete(0, END) 
+    # entry_2.delete(0, END)
+    entry_3.delete(0, END)
 
 # ---------------------------- UI SETUP ------------------------------- #
 # Window
 window = tkinter.Tk()
 window.title("Password Manager")
-window.config(padx=20, pady=20)
+window.config(padx=50, pady=50)
 
 # Logo (Canvas)
 canvas = tkinter.Canvas(width=200, height=200, highlightthickness=0)
@@ -36,6 +49,7 @@ label_1.grid(row=1, column=0)
 # entry_1
 entry_1 = tkinter.Entry(width=35)
 entry_1.grid(row=1, column=1, columnspan=2, sticky="EW")
+entry_1.focus()
 
 # label_2
 label_2_text = "Email/Username:"
@@ -43,8 +57,10 @@ label_2 = tkinter.Label(text=label_2_text)
 label_2.grid(row=2, column=0)
 
 # entry_2
+default_email = "sufiansuni@gmail.com"
 entry_2 = tkinter.Entry(width=35)
 entry_2.grid(row=2, column=1, columnspan=2, sticky="EW")
+entry_2.insert(END, default_email)
 
 # label_3
 label_3_text = "Password:"
