@@ -100,3 +100,18 @@ question_data = [
         ]
     }
 ]
+
+# Get 10 Questions from Trivia API
+from inspect import Parameter
+import requests
+
+base_url = "https://opentdb.com/api.php"
+parameters = {
+    'amount': '10',
+    'type': 'boolean'
+}
+
+response = requests.get(url=base_url, params=parameters)
+response.raise_for_status()
+data = response.json()
+question_data = data['results']
