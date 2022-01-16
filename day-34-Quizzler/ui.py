@@ -39,7 +39,7 @@ class QuizInterface:
 
         false_image = PhotoImage(file="day-34-Quizzler/images/false.png")
         self.false_button = Button(
-            image=false_image, 
+            image=false_image,
             highlightthickness=0,
             command=self.false_pressed
         )
@@ -51,14 +51,16 @@ class QuizInterface:
 
     def get_next_question(self):
         self.canvas.config(bg="white")
+        self.score_label.config(text=f"Score: {self.quiz.score}")
+
         if self.quiz.still_has_questions():
-            self.score_label.config(text=f"Score: {self.quiz.score}")
             q_text = self.quiz.next_question()
             self.canvas.itemconfig(self.question_text, text=q_text)
             self.true_button.config(state="normal")
             self.false_button.config(state="normal")
         else:
-            self.canvas.itemconfig(self.question_text, text="You've reached the end of the quiz.")
+            self.canvas.itemconfig(
+                self.question_text, text="You've reached the end of the quiz.")
             self.true_button.config(state="disabled")
             self.false_button.config(state="disabled")
 
