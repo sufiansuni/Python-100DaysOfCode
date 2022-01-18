@@ -24,9 +24,10 @@ This repository contains projects done during the following course:
 | 27 | Miles to Km | Unit Converter App, Tkinter |
 | 28 | Pomodoro App | Task Timer App, Tkinter |
 | 29 | Password Manager App | Password Manager App, Tkinter |
-| 30 | Error and Exceptions Demo | Example of Error Handling |
+| 30 | Error & Exceptions Demo | Example of Error Handling |
 | 31 | FlashCards App | Memory App, Tkinter |
 | 32 | Birthday Mailer App | Automatic Email Sender |
 | 33 | Kanye Quotes App | Calls API and display's a random Kanye quote |
 | 33 | ISS Tracker | Tracks the position of ISS via API, email when user is near |
 | 34 | Quizzler | Quiz Game, Improvement from day17, API call, Tkinter, OOP |
+| 35 | RainChecker App | Sends SMS if rain in the next 12 hours, Open Weather, Twilio |
