@@ -58,6 +58,29 @@ def add_pixel(graphID, date, quantity):
     print(response.text)
 
 
+def update_pixel(graphID, date, quantity):
+    pixel_data = {
+        "date": date,
+        "quantity": quantity
+    }
+
+    headers = {"X-USER-TOKEN": PIXELA_TOKEN}
+
+    response = requests.put(
+        url=f"{pixela_base_url}v1/users/{pixela_username}/graphs/{graphID}", json=pixel_data, headers=headers)
+    # response.raise_for_status()
+    print(response.text)
+
+
+def delete_graph(graphID):
+    headers = {"X-USER-TOKEN": PIXELA_TOKEN}
+
+    response = requests.post(
+        url=f"{pixela_base_url}v1/users/{pixela_username}/graphs/{graphID}", headers=headers)
+    # response.raise_for_status()
+    print(response.text)
+
+
 # create_pixela_account()
 # create_graph()
 # add_pixel("graph1", "20220121", "0.1")
