@@ -2,6 +2,7 @@
 import requests
 from dotenv import load_dotenv
 import os
+import datetime
 
 load_dotenv()
 
@@ -43,5 +44,28 @@ def create_graph():
     print(response.text)
 
 
+def add_pixel(graphID, date, quantity):
+    pixel_data = {
+        "date": date,
+        "quantity": quantity
+    }
+
+    headers = {"X-USER-TOKEN": PIXELA_TOKEN}
+
+    response = requests.post(
+        url=f"{pixela_base_url}v1/users/{pixela_username}/graphs/{graphID}", json=pixel_data, headers=headers)
+    # response.raise_for_status()
+    print(response.text)
+
+
 # create_pixela_account()
 # create_graph()
+# add_pixel("graph1", "20220121", "0.1")
+
+# now = datetime.datetime.now()
+# formatted_now = now.strftime("%Y%m%d")
+# print(formatted_now)
+
+# other http methods, update and delete
+# requests.put(...)
+# requests.delete(...)
