@@ -33,3 +33,4 @@ This repository contains projects done during the following course:
 | 34  | Quizzler                | Quiz Game, Improvement from day17, API call, Tkinter, OOP          |
 | 35  | RainChecker App         | Sends SMS if rain in the next 12 hours, Open Weather, Twilio       |
 | 36  | StockNews App           | Sends SMS if Tesla stocks change > 5%, Alpha Vantage, News, Twilio |
+| 37  | HabitTracker App        | Habit Tracker, Pixela, HTTP Methods and Headers                    |
