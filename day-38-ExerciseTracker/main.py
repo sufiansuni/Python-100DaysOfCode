@@ -30,4 +30,14 @@ def get_exercise_info():
     print(response.text)
 
 
-get_exercise_info()
+def get_exercise_sheet():
+    endpoint = "https://api.sheety.co/2441cf3e4d3f8a33fc100d25122c24f8/myWorkouts/workouts"
+
+    response = requests.get(url=endpoint)
+
+    response.raise_for_status()
+    print(response.json())
+
+
+# get_exercise_info()
+get_exercise_sheet()
