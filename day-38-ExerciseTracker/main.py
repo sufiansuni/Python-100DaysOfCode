@@ -9,6 +9,7 @@ PIXELA_TOKEN = os.environ.get("PIXELA_TOKEN")
 
 NUTRITIONIX_APP_ID = os.environ.get("NUTRITIONIX_APP_ID")
 NUTRITIONIX_API_KEY = os.environ.get("NUTRITIONIX_API_KEY")
+SHEETY_CUSTOM_WORKOUT_TOKEN = os.environ.get("SHEETY_CUSTOM_WORKOUT_TOKEN")
 
 
 def get_exercise_info():
@@ -54,4 +55,22 @@ new_exercise_row = {
     }
 }
 
-print(new_exercise_row)
+# print(new_exercise_row)
+
+
+def post_new_row(new_row):
+    endpoint = "https://api.sheety.co/2441cf3e4d3f8a33fc100d25122c24f8/myWorkouts/workouts"
+
+    headers = {
+        "Authorization": f"Bearer {SHEETY_CUSTOM_WORKOUT_TOKEN}"
+    }
+
+    response = requests.post(
+        url=endpoint,
+        json=new_row,
+        headers=headers)
+
+    response.raise_for_status()
+    print(response.json())
+
+post_new_row(new_exercise_row)
