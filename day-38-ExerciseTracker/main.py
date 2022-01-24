@@ -1,6 +1,7 @@
 from dotenv import load_dotenv
 import os
 import requests
+import datetime
 
 load_dotenv()
 
@@ -27,7 +28,7 @@ def get_exercise_info():
         headers=headers)
 
     response.raise_for_status()
-    print(response.text)
+    return response.json()
 
 
 def get_exercise_sheet():
@@ -36,8 +37,21 @@ def get_exercise_sheet():
     response = requests.get(url=endpoint)
 
     response.raise_for_status()
-    print(response.json())
+    return response.json()
 
 
-# get_exercise_info()
-get_exercise_sheet()
+# get_exercise_sheet()
+exercise_json = get_exercise_info()
+now = datetime.datetime.now()
+
+new_exercise_row = {
+    "workout": {
+        "date": now.strftime("%d/%m/%Y"),
+        "time": now.strftime("%H:%M:%S"),
+        "exercise": exercise_json["exercises"][0]["name"].title(),
+        "duration": exercise_json["exercises"][0]["duration_min"],
+        "calories": exercise_json["exercises"][0]["nf_calories"]
+    }
+}
+
+print(new_exercise_row)
