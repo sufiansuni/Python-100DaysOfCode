@@ -35,3 +35,4 @@ This repository contains projects done during the following course:
 | 36  | StockNews App           | Sends SMS if Tesla stocks change > 5%, Alpha Vantage, News, Twilio |
 | 37  | HabitTracker App        | Habit Tracker, Pixela, HTTP Methods and Headers                    |
 | 38  | ExerciseTracker         | Exercise Tracker, OpenAi, Nutritionix, Sheety, NLP                 |
+| 39  | FlightDealFinder        | Capstone Project, FlightDealFinder                                 |
