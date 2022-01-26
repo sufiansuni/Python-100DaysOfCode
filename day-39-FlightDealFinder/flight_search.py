@@ -19,7 +19,8 @@ class FlightSearch:
         endpoint = "https://tequila-api.kiwi.com/locations/query"
 
         params = {
-            "term": query
+            "term": query,
+            "location_types": "city"
         }
 
         headers = {
