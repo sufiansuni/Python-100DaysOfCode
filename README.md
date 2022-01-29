@@ -36,3 +36,4 @@ This repository contains projects done during the following course:
 | 37  | HabitTracker App        | Habit Tracker, Pixela, HTTP Methods and Headers                    |
 | 38  | ExerciseTracker         | Exercise Tracker, OpenAi, Nutritionix, Sheety, NLP                 |
 | 39  | FlightDealFinder        | Capstone Project, FlightDealFinder                                 |
+| 39  | FlightClub              | Capstone Project, Users for FlightDealFinder                       |
